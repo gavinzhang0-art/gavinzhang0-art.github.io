@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gavin Zhang | Financial Consultant & Asset Strategist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #ffffff;
+  --off-white: #f8f7f4;
+  --light: #f0ede8;
+  --navy: #0d1f3c;
+  --navy-mid: #1a3460;
+  --gold: #c9993a;
+  --gold-light: #e8c97a;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --border: #e2ddd8;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── CURSOR ── */
+.cursor {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  mix-blend-mode: multiply;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.18s ease, opacity 0.3s;
+  opacity: 0.5;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
+}
+.nav-logo {
+  display: flex; align-items: baseline; gap: 0.5rem;
+  text-decoration: none;
+}
+.nav-logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--navy);
+  font-weight: 500;
+}
+.nav-logo-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin-bottom: 2px; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--navy); }
+.nav-cta {
+  padding: 0.55rem 1.4rem;
+  background: var(--navy) !important;
+  color: white !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.06em;
+  transition: background 0.25s !important;
+}
+.nav-cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--white);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 4rem;
+  padding-top: 68px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; right: 0; top: 0; bottom: 0;
+  width: 50%;
+  background: var(--off-white);
+  z-index: 0;
+}
+.hero-bg-text {
+  position: absolute;
+  right: 2rem; bottom: 4rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 14rem;
+  color: rgba(13,31,60,0.04);
+  line-height: 1;
+  user-select: none;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-left { position: relative; z-index: 1; padding-right: 4rem; }
+.hero-right {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 4rem 2rem;
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: slideIn 0.7s ease 0.1s forwards;
+}
+.hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: slideIn 0.7s ease 0.25s forwards;
+}
+.hero h1 em { color: var(--gold); font-style: italic; }
+
+.hero-desc {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: slideIn 0.7s ease 0.4s forwards;
+}
+
+.hero-actions {
+  display: flex; gap: 1rem; align-items: center;
+  opacity: 0;
+  animation: slideIn 0.7s ease 0.55s forwards;
+}
+.btn-primary {
+  padding: 0.85rem 2.2rem;
+  background: var(--navy);
+  color: white;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  transition: background 0.25s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--gold); color: var(--navy); transform: translateY(-1px); }
+.btn-ghost {
+  padding: 0.85rem 2rem;
+  border: 1px solid var(--border);
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  transition: border-color 0.25s, background 0.25s;
+}
+.btn-ghost:hover { border-color: var(--navy); background: var(--off-white); }
+
+/* Profile card */
+.profile-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 360px;
+  position: relative;
+  opacity: 0;
+  animation: slideIn 0.7s ease 0.5s forwards;
+}
+.profile-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--navy), var(--gold));
+}
+.profile-avatar {
+  width: 72px; height: 72px;
+  background: var(--navy);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+.profile-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--navy);
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.profile-title {
+  font-size: 0.78rem;
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.profile-divider { height: 1px; background: var(--border); margin-bottom: 1.5rem; }
+.profile-stat { display: flex; justify-content: space-between; margin-bottom: 0.9rem; }
+.stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
+.stat-value { font-size: 0.82rem; color: var(--navy); font-weight: 500; font-family: 'DM Mono', monospace; }
+.stat-value.gold { color: var(--gold); }
+.profile-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.profile-tag {
+  padding: 0.3rem 0.7rem;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  font-size: 0.68rem;
+  color: var(--navy);
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* ── TICKER ── */
+.ticker {
+  background: var(--navy);
+  padding: 0.7rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 28s linear infinite;
+}
+.ticker-item {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  margin-right: 3rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.08em;
+}
+.ticker-item span { color: var(--gold-light); }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── SECTIONS ── */
+section { padding: 7rem 4rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 500;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.section-sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 560px;
+  margin-bottom: 3.5rem;
+}
+
+/* ── SERVICES ── */
+#services { background: var(--white); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.service-card {
+  background: var(--white);
+  padding: 2.5rem 2rem;
+  transition: background 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width 0.4s ease;
+}
+.service-card:hover { background: var(--off-white); }
+.service-card:hover::after { width: 100%; }
+.service-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+}
+.service-icon {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.service-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--navy);
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+.service-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ── EXPERIENCE ── */
+#experience { background: var(--off-white); }
+.exp-layout { display: grid; grid-template-columns: 280px 1fr; gap: 5rem; }
+.exp-nav { display: flex; flex-direction: column; gap: 0; }
+.exp-nav-item {
+  padding: 1.2rem 1.5rem;
+  cursor: pointer;
+  border-left: 2px solid var(--border);
+  transition: border-color 0.2s, background 0.2s;
+  background: transparent;
+}
+.exp-nav-item:hover { background: rgba(13,31,60,0.03); }
+.exp-nav-item.active { border-left-color: var(--gold); background: white; }
+.exp-nav-company {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 0.2rem;
+}
+.exp-nav-period {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.exp-panel { display: none; }
+.exp-panel.active { display: block; }
+.exp-panel-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--navy);
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.exp-panel-company {
+  font-size: 0.82rem;
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.exp-panel-desc {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+.exp-bullets li {
+  display: flex; gap: 1rem;
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.75;
+  font-weight: 300;
+}
+.exp-bullets li::before {
+  content: '→';
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+  font-size: 0.8rem;
+}
+.exp-highlight {
+  font-weight: 500;
+  color: var(--navy);
+}
+
+/* ── METRICS ── */
+.metrics-bar {
+  background: var(--navy);
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+.metric-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  color: var(--gold);
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.metric-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+
+/* ── SKILLS ── */
+#skills { background: var(--white); }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.skills-col h4 {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.skill-row {
+  display: flex; justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.skill-name { font-size: 0.88rem; color: var(--text); font-weight: 400; }
+.skill-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  letter-spacing: 0.08em;
+}
+.skill-badge.adv { background: var(--navy); color: white; }
+.skill-badge.prof { background: var(--off-white); color: var(--navy); border: 1px solid var(--border); }
+.skill-badge.prog { background: rgba(201,153,58,0.12); color: var(--gold); border: 1px solid rgba(201,153,58,0.3); }
+
+.cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+.cert-card {
+  padding: 1.2rem 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--off-white);
+  position: relative;
+  overflow: hidden;
+}
+.cert-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+}
+.cert-name { font-size: 0.82rem; color: var(--navy); font-weight: 500; margin-bottom: 0.2rem; }
+.cert-status { font-size: 0.7rem; color: var(--gold); font-family: 'DM Mono', monospace; }
+
+/* ── EDUCATION ── */
+#education { background: var(--off-white); }
+.edu-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 1.5rem;
+}
+.edu-degree {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--navy);
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.edu-school { font-size: 0.82rem; color: var(--gold); font-weight: 500; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+.edu-courses {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.8;
+  font-weight: 300;
+}
+.edu-year {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── CONTACT ── */
+#contact { background: var(--white); }
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.contact-info-item {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  margin-bottom: 2rem;
+}
+.contact-info-icon {
+  width: 40px; height: 40px;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.contact-info-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.contact-info-val { font-size: 0.9rem; color: var(--navy); font-weight: 400; }
+
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--border);
+  background: var(--off-white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  appearance: none;
+}
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+  border-color: var(--navy);
+  background: white;
+}
+.contact-form textarea { min-height: 120px; resize: vertical; }
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: #aaa; }
+.form-submit {
+  padding: 1rem;
+  background: var(--navy);
+  color: white;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.25s;
+  text-transform: uppercase;
+}
+.form-submit:hover { background: var(--gold); color: var(--navy); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  padding: 2.5rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.footer-copy {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  font-weight: 300;
+}
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ── ANIMATIONS ── */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  nav { padding: 0 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
+  .hero::before { display: none; }
+  section { padding: 5rem 1.5rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .exp-layout { grid-template-columns: 1fr; }
+  .exp-nav { flex-direction: row; flex-wrap: wrap; }
+  .metrics-bar { grid-template-columns: repeat(2, 1fr); padding: 3rem 2rem; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-dot"></div>
+    <span class="nav-logo-name">Gavin Zhang</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact" class="nav-cta">Enquire</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Financial Consultant · Asset Strategist · Toronto, ON</div>
+    <h1>Strategic <em>Finance</em><br>& Asset Advisory</h1>
+    <p class="hero-desc">BComm. graduate specializing in financial consulting, investment strategy, and operational asset management. Combining data-driven analysis with hands-on market experience to help clients grow and protect their wealth.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book a Consultation</a>
+      <a href="#services" class="btn-ghost">View Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="profile-card">
+      <div class="profile-avatar">GZ</div>
+      <div class="profile-name">Gavin Zhang</div>
+      <div class="profile-title">Financial Consultant & Asset Strategist</div>
+      <div class="profile-divider"></div>
+      <div class="profile-stat">
+        <span class="stat-label">Experience</span>
+        <span class="stat-value gold">5+ Years</span>
+      </div>
+      <div class="profile-stat">
+        <span class="stat-label">Assets Managed</span>
+        <span class="stat-value">$2M+</span>
+      </div>
+      <div class="profile-stat">
+        <span class="stat-label">Education</span>
+        <span class="stat-value">BComm. TMU</span>
+      </div>
+      <div class="profile-stat">
+        <span class="stat-label">Certifications</span>
+        <span class="stat-value gold">LLQP · CSC</span>
+      </div>
+      <div class="profile-stat">
+        <span class="stat-label">Languages</span>
+        <span class="stat-value">EN · 粵語</span>
+      </div>
+      <div class="profile-tags">
+        <span class="profile-tag">Real Estate</span>
+        <span class="profile-tag">Wealth Strategy</span>
+        <span class="profile-tag">AP/AR</span>
+        <span class="profile-tag">Bloomberg</span>
+        <span class="profile-tag">SQL</span>
+        <span class="profile-tag">RCM</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bg-text">GZ</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">GTA Real Estate Advisory <span>↗ Active</span></span>
+    <span class="ticker-item">Financial Reconciliation <span>↗ Available</span></span>
+    <span class="ticker-item">Asset Management <span>↗ Active</span></span>
+    <span class="ticker-item">Investment Strategy <span>↗ Available</span></span>
+    <span class="ticker-item">Risk Assessment <span>↗ Active</span></span>
+    <span class="ticker-item">LLQP <span>In Progress</span></span>
+    <span class="ticker-item">CSC <span>In Progress</span></span>
+    <span class="ticker-item">Bloomberg Analytics <span>↗ Proficient</span></span>
+    <span class="ticker-item">GTA Real Estate Advisory <span>↗ Active</span></span>
+    <span class="ticker-item">Financial Reconciliation <span>↗ Available</span></span>
+    <span class="ticker-item">Asset Management <span>↗ Active</span></span>
+    <span class="ticker-item">Investment Strategy <span>↗ Available</span></span>
+    <span class="ticker-item">Risk Assessment <span>↗ Active</span></span>
+    <span class="ticker-item">LLQP <span>In Progress</span></span>
+    <span class="ticker-item">CSC <span>In Progress</span></span>
+    <span class="ticker-item">Bloomberg Analytics <span>↗ Proficient</span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="eyebrow">What I Offer</div>
+    <h2 class="section-title reveal">Financial Consulting Services</h2>
+    <p class="section-sub reveal">Tailored financial and strategic advisory for individuals, investors, and small businesses navigating complex markets.</p>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <span class="service-icon">📊</span>
+        <div class="service-title">Investment & Asset Advisory</div>
+        <p class="service-desc">Strategic guidance on real estate investment, asset positioning, and portfolio optimization. Leveraging GTA market intelligence and macroeconomic analysis to inform high-impact ownership decisions.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <span class="service-icon">🏦</span>
+        <div class="service-title">Financial Reconciliation & Reporting</div>
+        <p class="service-desc">Full-cycle AP/AR management, general ledger reconciliation, month-end close procedures, and P&L reporting. Clean books, accurate records, and transparent financial visibility for your business.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <span class="service-icon">📈</span>
+        <div class="service-title">Revenue & Yield Optimization</div>
+        <p class="service-desc">Data-driven analysis of revenue streams using regression modeling, dynamic pricing strategies, and competitive benchmarking to identify inefficiencies and maximize returns.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <span class="service-icon">⚖️</span>
+        <div class="service-title">Risk Assessment & Underwriting</div>
+        <p class="service-desc">Evaluation of financial risk on high-value purchases and investment decisions. Applying underwriting principles to guide capital allocation and protect against downside exposure.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <span class="service-icon">🏠</span>
+        <div class="service-title">Property Operations Management</div>
+        <p class="service-desc">End-to-end operational oversight of residential and investment properties. Vendor management, SLA negotiation, capital improvement planning, and NOI tracking for passive ownership.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <span class="service-icon">📋</span>
+        <div class="service-title">Budgeting & Cost Control</div>
+        <p class="service-desc">Operating budget development, overhead analysis, and cost reduction strategies. Delivering transparent financial reporting with actionable insights to improve capital efficiency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<div class="metrics-bar reveal">
+  <div>
+    <div class="metric-num">$2M+</div>
+    <div class="metric-label">Residential Assets<br>Managed</div>
+  </div>
+  <div>
+    <div class="metric-num">90%</div>
+    <div class="metric-label">Profit on Asset<br>Disposition</div>
+  </div>
+  <div>
+    <div class="metric-num">60%</div>
+    <div class="metric-label">Short-Term Rental<br>Revenue Increase</div>
+  </div>
+  <div>
+    <div class="metric-num">5 Yrs</div>
+    <div class="metric-label">Private Client<br>Engagement</div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="eyebrow">Career History</div>
+    <h2 class="section-title reveal">Professional Experience</h2>
+    <p class="section-sub reveal">A track record of delivering measurable results across asset management, financial operations, and client advisory.</p>
+    <div class="exp-layout reveal">
+      <div class="exp-nav">
+        <div class="exp-nav-item active" onclick="showExp('property')">
+          <div class="exp-nav-company">Private Client</div>
+          <div class="exp-nav-period">2019 – 2024</div>
+        </div>
+        <div class="exp-nav-item" onclick="showExp('beauty')">
+          <div class="exp-nav-company">Beauty Home</div>
+          <div class="exp-nav-period">2018 – 2020</div>
+        </div>
+        <div class="exp-nav-item" onclick="showExp('muji')">
+          <div class="exp-nav-company">MUJI</div>
+          <div class="exp-nav-period">2022 – 2023</div>
+        </div>
+        <div class="exp-nav-item" onclick="showExp('tutor')">
+          <div class="exp-nav-company">Math Tutor</div>
+          <div class="exp-nav-period">2020 – 2022</div>
+        </div>
+      </div>
+      <div>
+        <div class="exp-panel active" id="exp-property">
+          <div class="exp-panel-role">Property Asset Manager & Investment Strategist</div>
+          <div class="exp-panel-company">Private Client Engagement · Newmarket, ON · Aug 2019 – Jul 2024</div>
+          <p class="exp-panel-desc">Served as a dedicated asset manager and investment strategist for a private high-net-worth client, overseeing the full operational and financial lifecycle of a $2M+ luxury residential property. Functioned as a single-point-of-contact family office for all property-related decisions, enabling fully passive ownership while delivering strong, measurable returns over a 5-year engagement.</p>
+          <ul class="exp-bullets">
+            <li>Interpreted macroeconomic and GTA real estate market conditions to advise on optimal sale timing, resulting in a <span class="exp-highlight">90% profit on asset disposition</span></li>
+            <li>Identified operational inefficiencies and executed targeted capital upgrades, optimizing short-term rental revenue by <span class="exp-highlight">60% within the first year</span> of implementation</li>
+            <li>Applied regression modeling in Excel and SQL to analyze seasonal booking trends and pricing anomalies, producing demand forecasts that <span class="exp-highlight">directly informed revenue strategy</span></li>
+            <li>Built automated NOI tracking dashboards monitoring cash flow and expense performance in real time, delivering <span class="exp-highlight">100% reporting transparency</span> to the client</li>
+            <li>Negotiated SLAs with local trades and vendors, securing preferred response times and <span class="exp-highlight">reducing annual operating expenses by 50%+</span></li>
+            <li>Directed rotating cleaning staff and specialized contractors, coordinating schedules to maintain <span class="exp-highlight">zero operational downtime</span> between bookings</li>
+            <li>Managed a $50K+ annual operating budget, identifying cost-saving opportunities that <span class="exp-highlight">reduced overhead by 12% annually</span></li>
+          </ul>
+        </div>
+        <div class="exp-panel" id="exp-beauty">
+          <div class="exp-panel-role">Underwriter & Financial Operations Assistant</div>
+          <div class="exp-panel-company">Beauty Home, Furniture & Lighting · Scarborough, ON · May 2018 – Apr 2020</div>
+          <p class="exp-panel-desc">Supported the financial operations of a mid-size retail business, managing the full accounts payable and receivable cycle, general ledger reconciliation, and month-end close procedures. Applied underwriting principles to assess financial risk on high-ticket inventory purchases.</p>
+          <ul class="exp-bullets">
+            <li>Assessed financial risk on high-ticket inventory purchases, applying underwriting principles to <span class="exp-highlight">reduce excess stock costs by 12% quarterly</span></li>
+            <li>Executed full-cycle AP/AR reconciliation, ledger management, and month-end close, <span class="exp-highlight">cutting administrative reporting time by 19%</span> through streamlined workflows</li>
+            <li>Processed payroll and managed financial reporting for staff, maintaining <span class="exp-highlight">full compliance</span> with internal controls and submission deadlines</li>
+          </ul>
+        </div>
+        <div class="exp-panel" id="exp-muji">
+          <div class="exp-panel-role">Sales & Inventory Operations Associate</div>
+          <div class="exp-panel-company">Ryohin Keikaku Co. Ltd. (MUJI) · Markham, ON · Aug 2022 – Jun 2023</div>
+          <p class="exp-panel-desc">Delivered front-line retail operations for one of Japan's most recognized lifestyle brands, managing daily cash wrap operations, terminal balancing, and inventory processing across a 7,000+ SKU product catalogue.</p>
+          <ul class="exp-bullets">
+            <li>Managed cash wrap operations processing <span class="exp-highlight">150+ daily transactions with 100% accuracy</span> in a high-traffic flagship environment</li>
+            <li>Processed and merchandised incoming stock across a 7,000+ SKU catalogue, independently handling <span class="exp-highlight">up to 500 units per shift</span></li>
+            <li>Cultivated a base of repeat customers who purchased <span class="exp-highlight">exclusively based on personal product recommendations</span>, driving loyalty-driven revenue</li>
+          </ul>
+        </div>
+        <div class="exp-panel" id="exp-tutor">
+          <div class="exp-panel-role">Mathematics Tutor</div>
+          <div class="exp-panel-company">Advance Mathematics Service, Contract · Toronto, ON · Jul 2020 – May 2022</div>
+          <p class="exp-panel-desc">Provided private mathematics tutoring on a contract basis, designing customized diagnostic assessments and structured learning programs tailored to each student's individual knowledge gaps and academic goals.</p>
+          <ul class="exp-bullets">
+            <li>Raised student performance to an <span class="exp-highlight">average test score of 94%</span> through customized learning programs</li>
+            <li>Migrated full lesson delivery to Zoom during the pandemic, maintaining <span class="exp-highlight">100% student retention</span> through the transition</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="eyebrow">Capabilities</div>
+    <h2 class="section-title reveal">Skills & Certifications</h2>
+    <div class="skills-grid reveal">
+      <div class="skills-col">
+        <h4>Technical Tools</h4>
+        <div class="skill-row"><span class="skill-name">MS Excel (VBA / Financial Modeling)</span><span class="skill-badge adv">Advanced</span></div>
+        <div class="skill-row"><span class="skill-name">Bloomberg Analytics</span><span class="skill-badge prof">Proficient</span></div>
+        <div class="skill-row"><span class="skill-name">SQL</span><span class="skill-badge prof">Proficient</span></div>
+        <div class="skill-row"><span class="skill-name">R (Statistical Analysis)</span><span class="skill-badge prof">Proficient</span></div>
+        <div class="skill-row"><span class="skill-name">JavaScript</span><span class="skill-badge prof">Proficient</span></div>
+        <div class="skill-row"><span class="skill-name">MS Office Suite</span><span class="skill-badge adv">Advanced</span></div>
+        <h4 style="margin-top:2rem">Certifications</h4>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <div class="cert-name">LLQP</div>
+            <div class="cert-status">In Progress →</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-name">CSC</div>
+            <div class="cert-status">In Progress →</div>
+          </div>
+        </div>
+      </div>
+      <div class="skills-col">
+        <h4>Core Competencies</h4>
+        <div class="skill-row"><span class="skill-name">Financial Products & Advisory</span><span class="skill-badge adv">Expert</span></div>
+        <div class="skill-row"><span class="skill-name">AP/AR & Financial Reconciliation</span><span class="skill-badge adv">Expert</span></div>
+        <div class="skill-row"><span class="skill-name">Client Relationship Management</span><span class="skill-badge adv">Expert</span></div>
+        <div class="skill-row"><span class="skill-name">Risk Assessment & Underwriting</span><span class="skill-badge prof">Proficient</span></div>
+        <div class="skill-row"><span class="skill-name">Asset & Operations Management</span><span class="skill-badge adv">Expert</span></div>
+        <div class="skill-row"><span class="skill-name">Investment Market Analysis</span><span class="skill-badge prof">Proficient</span></div>
+        <div class="skill-row"><span class="skill-name">Regulatory Compliance</span><span class="skill-badge prof">Proficient</span></div>
+        <div class="skill-row"><span class="skill-name">Vendor Negotiation</span><span class="skill-badge adv">Expert</span></div>
+        <h4 style="margin-top:2rem">Languages</h4>
+        <div class="skill-row"><span class="skill-name">English</span><span class="skill-badge adv">Fluent</span></div>
+        <div class="skill-row"><span class="skill-name">Cantonese (粵語)</span><span class="skill-badge prof">Spoken</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="eyebrow">Academic Background</div>
+    <h2 class="section-title reveal">Education</h2>
+    <div class="reveal">
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">Honours Bachelor of Commerce</div>
+          <div class="edu-degree" style="font-size:1rem;color:var(--muted);font-weight:400;margin-bottom:0.5rem">Economics & Management Science</div>
+          <div class="edu-school">Toronto Metropolitan University · Ted Rogers School of Management · Toronto, ON</div>
+          <div class="edu-courses">
+            <strong style="color:var(--navy);font-weight:500">Relevant Coursework:</strong> Financial Markets & Investments · Managerial Economics · Business Statistics · Operations Management · Data Analytics & Business Intelligence · Financial Accounting & Reporting · Managerial Accounting & Cost Control · Business Law & Regulatory Frameworks · Corporate Law & Contract Fundamentals · Management Information Systems (MIS) · IT & Business Systems Integration
+          </div>
+        </div>
+        <div class="edu-year">Oct 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="eyebrow">Get in Touch</div>
+    <h2 class="section-title reveal">Book a Consultation</h2>
+    <p class="section-sub reveal">Available for financial consulting engagements, asset advisory, and strategic projects across the GTA. Reach out to discuss how I can help.</p>
+    <div class="contact-layout reveal">
+      <div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📞</div>
+          <div>
+            <div class="contact-info-label">Phone / Text</div>
+            <div class="contact-info-val">(416) 821-0322</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">✉</div>
+          <div>
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-val">gavinzhang0@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">💼</div>
+          <div>
+            <div class="contact-info-label">LinkedIn</div>
+            <div class="contact-info-val">linkedin.com/in/gavinzhang01</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div>
+            <div class="contact-info-label">Location</div>
+            <div class="contact-info-val">Toronto · Markham · GTA, Ontario</div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;padding:1.5rem;background:var(--off-white);border:1px solid var(--border);border-left:3px solid var(--gold)">
+          <p style="font-size:0.82rem;color:var(--muted);font-weight:300;line-height:1.8">Currently pursuing <strong style="color:var(--navy)">LLQP</strong> and <strong style="color:var(--navy)">CSC</strong> certifications. Available for financial consulting, asset advisory, and operations engagements across the GTA. Bilingual in English and Cantonese.</p>
+        </div>
+      </div>
+      <div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <input type="text" placeholder="Full Name" required>
+            <input type="tel" placeholder="Phone Number">
+          </div>
+          <input type="email" placeholder="Email Address" required>
+          <select>
+            <option value="" disabled selected>Service of Interest</option>
+            <option>Investment & Asset Advisory</option>
+            <option>Financial Reconciliation & Reporting</option>
+            <option>Revenue & Yield Optimization</option>
+            <option>Risk Assessment & Underwriting</option>
+            <option>Property Operations Management</option>
+            <option>Budgeting & Cost Control</option>
+            <option>Other / General Enquiry</option>
+          </select>
+          <textarea placeholder="Tell me about your situation and what you're looking to achieve..."></textarea>
+          <button type="submit" class="form-submit">Send Enquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Gavin Zhang</div>
+  <div class="footer-copy">© 2026 · Financial Consultant & Asset Strategist · Toronto, ON</div>
+  <div class="footer-links">
+    <a href="tel:4168210322">(416) 821-0322</a>
+    <a href="mailto:gavinzhang0@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/gavinzhang01" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  }, 60);
+});
+
+// Experience tabs
+function showExp(id) {
+  document.querySelectorAll('.exp-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.exp-nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('exp-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Form submit
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Enquiry Sent ✓';
+  btn.style.background = '#c9993a';
+  btn.style.color = '#0d1f3c';
+  setTimeout(() => {
+    btn.textContent = 'Send Enquiry';
+    btn.style.background = '';
+    btn.style.color = '';
+    e.target.reset();
+  }, 3000);
+}
+</script>
+</body>
+</html>
