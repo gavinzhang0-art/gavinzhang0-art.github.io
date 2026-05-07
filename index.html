@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gavin Zhang — Financial Consultant & Asset Strategist</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Figtree:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── ROOT ── */
+:root {
+  --white:   #ffffff;
+  --off:     #f9f8f6;
+  --light:   #f0ede8;
+  --border:  #d6d2cc;
+  --ink:     #111110;
+  --muted:   #6b6760;
+  --faint:   #a09c96;
+  --green:   #1a3d2b;
+  --green-m: #2a5c40;
+  --green-l: #3d7a58;
+  --green-x: #d4ead9;
+  --serif:   'Libre Baskerville', Georgia, serif;
+  --sans:    'Figtree', sans-serif;
+  --mono:    'IBM Plex Mono', monospace;
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:17px; scroll-behavior:smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--green);
+  padding: 0.45rem 2.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+}
+.topbar-item {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.topbar-item.active { color: rgba(255,255,255,0.85); }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--white);
+  border-bottom: 1.5px solid var(--ink);
+  display: flex; align-items: stretch;
+  height: 64px;
+}
+.nav-logo-block {
+  display: flex; align-items: center;
+  padding: 0 2.5rem;
+  border-right: 1.5px solid var(--ink);
+  text-decoration: none;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+.nav-logo-mark {
+  width: 34px; height: 34px;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+.nav-logo-text {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ink);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+.nav-logo-sub {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+}
+.nav-links {
+  display: flex; align-items: stretch;
+  list-style: none;
+  margin-left: auto;
+}
+.nav-links li {
+  border-left: 1px solid var(--border);
+}
+.nav-links a {
+  display: flex; align-items: center;
+  padding: 0 1.6rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.15s, background 0.15s;
+  height: 100%;
+}
+.nav-links a:hover { color: var(--ink); background: var(--off); }
+.nav-links .nav-cta {
+  background: var(--green);
+  color: white;
+  border-left: 1.5px solid var(--green);
+  font-weight: 600;
+  padding: 0 2rem;
+}
+.nav-links .nav-cta:hover { background: var(--green-m); }
+
+/* ── HERO ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 91px);
+  border-bottom: 1.5px solid var(--ink);
+}
+.hero-left {
+  background: var(--green);
+  padding: 5rem 4rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left::after {
+  content: 'GZ';
+  position: absolute;
+  bottom: -2rem; right: -1rem;
+  font-family: var(--serif);
+  font-size: 16rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
+  color: white;
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.35s forwards;
+}
+.hero-name em {
+  display: block;
+  font-style: italic;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.55em;
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+}
+.hero-left-bottom {
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.6s forwards;
+}
+.hero-divider {
+  width: 40px; height: 1.5px;
+  background: rgba(255,255,255,0.25);
+  margin-bottom: 1.5rem;
+}
+.hero-tagline {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 380px;
+  margin-bottom: 2.5rem;
+}
+.hero-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.8rem 1.8rem;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background: white;
+  color: var(--green);
+}
+.btn-primary:hover { background: var(--light); }
+.btn-outline {
+  background: transparent;
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.6); color: white; }
+
+.hero-right {
+  background: var(--off);
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1.5px solid var(--ink);
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.5s forwards;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.stat-cell {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+.stat-cell:nth-child(2n) { border-right: none; }
+.stat-cell:nth-child(3),
+.stat-cell:nth-child(4) { border-bottom: none; }
+.stat-num {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.hero-certs {
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.certs-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--faint);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.cert-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.cert-tag {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--ink);
+  letter-spacing: 0.06em;
+  background: var(--white);
+}
+.cert-tag.highlight {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity:0; }
+  to   { opacity:1; }
+}
+
+/* ── SECTION LAYOUT ── */
+.section {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  border-bottom: 1.5px solid var(--ink);
+}
+.section-label {
+  padding: 3rem 2rem 3rem 2.5rem;
+  border-right: 1.5px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--off);
+}
+.s-num {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--faint);
+  letter-spacing: 0.2em;
+}
+.s-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--ink);
+  font-weight: 400;
+  line-height: 1.3;
+}
+.section-body {
+  padding: 3rem 3rem 3rem 3.5rem;
+}
+
+/* ── ABOUT ── */
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--ink);
+  font-weight: 400;
+  max-width: 680px;
+  margin-bottom: 2rem;
+}
+.about-text + .about-text { margin-top: 0; color: var(--muted); font-size: 1rem; }
+.skills-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  margin-top: 2.5rem;
+}
+.skill-cell {
+  padding: 1.2rem 1.5rem;
+  border-right: 1px solid var(--border);
+}
+.skill-cell:last-child { border-right: none; }
+.skill-cell-label {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  color: var(--faint);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.skill-cell-val {
+  font-size: 0.85rem;
+  color: var(--ink);
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+/* ── SERVICES ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1.5px solid var(--ink);
+}
+.service-card {
+  padding: 2.5rem 2rem;
+  border-right: 1.5px solid var(--ink);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s;
+}
+.service-card:hover { background: var(--off); }
+.service-card:last-child { border-right: none; }
+.service-card.featured {
+  background: var(--green);
+  border-color: var(--green);
+}
+.service-card.featured:hover { background: var(--green-m); }
+.svc-tier {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+}
+.service-card.featured .svc-tier { color: rgba(255,255,255,0.5); }
+.svc-name {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+.service-card.featured .svc-name { color: white; }
+.svc-sub {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--green-l);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.service-card.featured .svc-sub { color: rgba(255,255,255,0.5); }
+.svc-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 1.8rem;
+}
+.service-card.featured .svc-desc { color: rgba(255,255,255,0.6); }
+.svc-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.svc-list li {
+  font-size: 0.82rem;
+  color: var(--ink);
+  display: flex; gap: 0.6rem; align-items: flex-start;
+  line-height: 1.5;
+}
+.service-card.featured .svc-list li { color: rgba(255,255,255,0.75); }
+.svc-list li::before {
+  content: '—';
+  color: var(--green-l);
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  margin-top: 0.15rem;
+}
+.service-card.featured .svc-list li::before { color: rgba(255,255,255,0.3); }
+.svc-price-line {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 1rem;
+}
+.service-card.featured .svc-price-line { border-color: rgba(255,255,255,0.15); }
+.svc-price {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+}
+.service-card.featured .svc-price { color: white; }
+.svc-price sup { font-size: 1.1rem; vertical-align: super; }
+.svc-price-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.6;
+  text-align: right;
+  flex-shrink: 0;
+}
+.service-card.featured .svc-price-note { color: rgba(255,255,255,0.4); }
+.svc-enquire {
+  display: block;
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 0.7rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  transition: background 0.2s, color 0.2s;
+}
+.svc-enquire:hover { background: var(--ink); color: white; }
+.service-card.featured .svc-enquire {
+  border-color: rgba(255,255,255,0.3);
+  color: white;
+}
+.service-card.featured .svc-enquire:hover { background: rgba(255,255,255,0.15); }
+
+/* ── EXPERIENCE ── */
+.exp-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  border: 1.5px solid var(--ink);
+}
+.exp-tabs {
+  border-right: 1.5px solid var(--ink);
+  display: flex; flex-direction: column;
+}
+.exp-tab {
+  padding: 1.4rem 1.5rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.exp-tab:last-child { border-bottom: none; }
+.exp-tab:hover { background: var(--off); }
+.exp-tab.active { background: var(--green); }
+.exp-tab-co {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+  line-height: 1.3;
+}
+.exp-tab.active .exp-tab-co { color: white; }
+.exp-tab-yr {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  color: var(--faint);
+  letter-spacing: 0.08em;
+}
+.exp-tab.active .exp-tab-yr { color: rgba(255,255,255,0.5); }
+.exp-content { padding: 2.5rem 3rem; }
+.exp-panel { display: none; }
+.exp-panel.active { display: block; }
+.exp-role {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+.exp-co-line {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--green-l);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.exp-desc {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.85;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+  max-width: 580px;
+}
+.exp-bullets {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.8rem;
+}
+.exp-bullets li {
+  font-size: 0.9rem;
+  color: var(--ink);
+  line-height: 1.75;
+  display: flex; gap: 0.8rem; align-items: flex-start;
+}
+.exp-bullets li::before {
+  content: '—';
+  color: var(--green-l);
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+}
+.exp-highlight { font-weight: 600; color: var(--green); }
+
+/* ── METRICS BAR ── */
+.metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1.5px solid var(--ink);
+  background: var(--green);
+}
+.metric {
+  padding: 3rem 2.5rem;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.metric:last-child { border-right: none; }
+.m-num {
+  font-family: var(--serif);
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.m-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+/* ── CONTACT ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.contact-left {
+  padding: 3.5rem;
+  border-right: 1.5px solid var(--ink);
+}
+.contact-heading {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.contact-heading em { font-style: italic; color: var(--green); }
+.contact-body {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+  max-width: 420px;
+}
+.contact-rows { display: flex; flex-direction: column; gap: 0; }
+.c-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: padding-left 0.25s;
+}
+.c-row:hover { padding-left: 0.5rem; }
+.c-key {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--faint);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.c-val {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.c-arrow { color: var(--green-l); font-size: 1rem; transition: transform 0.2s; }
+.c-row:hover .c-arrow { transform: translateX(4px); }
+
+.contact-right {
+  padding: 3.5rem;
+  background: var(--off);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.avail-block {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+.avail-title {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 1.2rem;
+}
+.avail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+.avail-row:last-child { border-bottom: none; }
+.avail-k { color: var(--muted); }
+.avail-v { font-weight: 500; color: var(--ink); }
+.avail-v.open {
+  color: var(--green);
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.avail-v.open::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  display: inline-block;
+}
+.statement {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.statement em { font-style: normal; color: var(--green); font-weight: 700; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  gap: 2rem;
+}
+.footer-l {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+}
+.footer-c {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+.footer-r {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+.footer-r a {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.footer-r a:hover { color: rgba(255,255,255,0.8); }
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { border-left: none; border-top: 1.5px solid var(--ink); }
+  .section { grid-template-columns: 1fr; }
+  .section-label { border-right: none; border-bottom: 1.5px solid var(--ink); }
+  .section-body { padding: 2rem 1.5rem; }
+  .hero-left { padding: 4rem 1.5rem 3rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { border-right: none; border-bottom: 1.5px solid var(--ink); }
+  .exp-layout { grid-template-columns: 1fr; }
+  .exp-tabs { flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1.5px solid var(--ink); }
+  .exp-tab { border-bottom: none; border-right: 1px solid var(--border); white-space: nowrap; }
+  .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-left { border-right: none; border-bottom: 1.5px solid var(--ink); padding: 2rem 1.5rem; }
+  .contact-right { padding: 2rem 1.5rem; }
+  .skills-row { grid-template-columns: 1fr; }
+  .skill-cell { border-right: none; border-bottom: 1px solid var(--border); }
+  footer { grid-template-columns: 1fr; text-align: center; padding: 2rem 1.5rem; gap: 1rem; }
+  .footer-r { justify-content: center; }
+  nav { height: auto; flex-wrap: wrap; }
+  .nav-links { flex-wrap: wrap; border-top: 1px solid var(--border); width: 100%; }
+  .nav-links li { border-left: none; border-right: 1px solid var(--border); }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="topbar-item active">CSC — In Progress</span>
+  <span class="topbar-item active">LLQP — In Progress</span>
+  <span class="topbar-item">Toronto, Ontario</span>
+  <span class="topbar-item">Accepting New Clients</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo-block" href="#">
+    <div class="nav-logo-mark">GZ</div>
+    <div>
+      <div class="nav-logo-text">Gavin Zhang</div>
+      <span class="nav-logo-sub">Financial Consultant</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact" class="nav-cta">Enquire →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div>
+      <div class="hero-eyebrow">Financial Consultant & Asset Strategist · GTA, Ontario</div>
+      <h1 class="hero-name">
+        Gavin<br>Zhang
+        <em>BComm. Economics &<br>Management Science</em>
+      </h1>
+    </div>
+    <div class="hero-left-bottom">
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">Strategic financial advisory, investment strategy, and asset management for individuals and private clients across the Greater Toronto Area.</p>
+      <div class="hero-cta-row">
+        <a href="#services" class="btn btn-primary">View Services</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-cell">
+        <div class="stat-num">$2M+</div>
+        <div class="stat-label">Private Assets<br>Under Advisory</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">90%</div>
+        <div class="stat-label">Profit on Asset<br>Disposition</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">60%</div>
+        <div class="stat-label">Revenue Increase<br>Delivered</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Years Client<br>Engagement</div>
+      </div>
+    </div>
+    <div class="hero-certs">
+      <div class="certs-label">Credentials & Tools</div>
+      <div class="cert-tags">
+        <span class="cert-tag highlight">CSC — In Progress</span>
+        <span class="cert-tag highlight">LLQP — In Progress</span>
+        <span class="cert-tag">Bloomberg Analytics</span>
+        <span class="cert-tag">Advanced Excel VBA</span>
+        <span class="cert-tag">SQL · R</span>
+        <span class="cert-tag">English · Cantonese</span>
+        <span class="cert-tag">Ted Rogers School</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section reveal" id="about">
+  <div class="section-label">
+    <span class="s-num">01</span>
+    <span class="s-title">About</span>
+  </div>
+  <div class="section-body">
+    <p class="about-text">Gavin Zhang is a Toronto-based financial consultant and asset strategist with a BComm in Economics and Management Science from Ted Rogers School of Management. Over five years of hands-on engagement managing a $2M+ private residential asset and advising a high-net-worth client on investment strategy, market positioning, and financial operations.</p>
+    <p class="about-text">Proficient in Bloomberg Analytics, Advanced Excel (VBA/modeling), SQL, and R — with demonstrated experience building financial models, regression-based demand forecasts, and automated NOI dashboards for real-world client engagements. Bilingual in English and Cantonese, currently pursuing CSC and LLQP certifications.</p>
+    <div class="skills-row">
+      <div class="skill-cell">
+        <div class="skill-cell-label">Core Competencies</div>
+        <div class="skill-cell-val">Investment Advisory · Asset Management · Financial Reconciliation · Risk Assessment · Revenue Optimization · AP/AR · Budgeting</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-cell-label">Technical Tools</div>
+        <div class="skill-cell-val">Advanced Excel (VBA) · Bloomberg · SQL · R · JavaScript · MS Office Suite · Financial Modeling</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-cell-label">Education</div>
+        <div class="skill-cell-val">Honours BComm — Economics & Management Science<br>Toronto Metropolitan University, Ted Rogers School · Oct 2025</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section reveal" id="services">
+  <div class="section-label">
+    <span class="s-num">02</span>
+    <span class="s-title">Services &<br>Pricing</span>
+  </div>
+  <div class="section-body" style="padding-left:0; padding-right:0; padding-bottom:0;">
+    <div style="padding: 0 3rem 2rem 3.5rem;">
+      <p style="font-size:0.95rem; color:var(--muted); line-height:1.85; max-width:560px;">Three clearly defined engagement levels. All pricing disclosed upfront — no retainers, no hidden fees. Every engagement begins with a clear understanding of your goals.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="svc-tier">Tier 01 — Essential</div>
+        <div class="svc-name">Basic<br>Consultation</div>
+        <div class="svc-sub">Single Session</div>
+        <p class="svc-desc">A focused 60-minute session for individuals seeking clarity on a specific financial question, investment decision, or asset concern.</p>
+        <ul class="svc-list">
+          <li>60-minute one-on-one consultation</li>
+          <li>Pre-session intake questionnaire</li>
+          <li>Written summary of key recommendations</li>
+          <li>One follow-up email within 5 business days</li>
+        </ul>
+        <div class="svc-price-line">
+          <div>
+            <div class="svc-price"><sup>$</sup>150</div>
+          </div>
+          <div class="svc-price-note">Per session<br>One-time engagement</div>
+        </div>
+        <a href="mailto:gavinzhang0@gmail.com?subject=Basic Consultation Enquiry" class="svc-enquire">Enquire →</a>
+      </div>
+
+      <div class="service-card featured">
+        <div class="svc-tier">Tier 02 — Standard</div>
+        <div class="svc-name">Mid-Level<br>Consultation</div>
+        <div class="svc-sub">Multi-Session · 30 Days</div>
+        <p class="svc-desc">A structured multi-session engagement for complex financial situations requiring analysis, modeling, and ongoing advisory across several weeks.</p>
+        <ul class="svc-list">
+          <li>3 × 60-minute consultation sessions</li>
+          <li>Financial analysis and data modeling</li>
+          <li>Market research and benchmarking</li>
+          <li>Formal written report with strategy</li>
+          <li>Unlimited email for 30 days</li>
+          <li>One deliverable revision included</li>
+        </ul>
+        <div class="svc-price-line">
+          <div>
+            <div class="svc-price"><sup>$</sup>450</div>
+          </div>
+          <div class="svc-price-note">Flat rate<br>50% upfront · 50% delivery</div>
+        </div>
+        <a href="mailto:gavinzhang0@gmail.com?subject=Mid-Level Consultation Enquiry" class="svc-enquire">Enquire →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="svc-tier">Tier 03 — Comprehensive</div>
+        <div class="svc-name">Full-Scope<br>Advisory</div>
+        <div class="svc-sub">60-Day Engagement</div>
+        <p class="svc-desc">A deep-dive strategic engagement for clients requiring comprehensive analysis, ongoing advisory, and formal deliverables across investment strategy or asset management.</p>
+        <ul class="svc-list">
+          <li>Unlimited sessions over 60 days</li>
+          <li>Full financial modeling & scenario analysis</li>
+          <li>Complete strategy documentation</li>
+          <li>Risk assessment & mitigation framework</li>
+          <li>Executive-ready written report</li>
+          <li>Direct phone access during business hours</li>
+        </ul>
+        <div class="svc-price-line">
+          <div>
+            <div class="svc-price"><sup>$</sup>1,200</div>
+          </div>
+          <div class="svc-price-note">Flat rate<br>40 / 30 / 30% payment schedule</div>
+        </div>
+        <a href="mailto:gavinzhang0@gmail.com?subject=Comprehensive Advisory Enquiry" class="svc-enquire">Enquire →</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- METRICS BAR -->
+<div class="metrics-bar reveal">
+  <div class="metric"><div class="m-num">$2M+</div><div class="m-label">Assets Under<br>Advisory</div></div>
+  <div class="metric"><div class="m-num">90%</div><div class="m-label">Profit on<br>Disposition</div></div>
+  <div class="metric"><div class="m-num">60%</div><div class="m-label">Revenue Increase<br>Delivered</div></div>
+  <div class="metric"><div class="m-num">5 Yrs</div><div class="m-label">Private Client<br>Engagement</div></div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section reveal" id="experience">
+  <div class="section-label">
+    <span class="s-num">03</span>
+    <span class="s-title">Experience</span>
+  </div>
+  <div class="section-body" style="padding:0;">
+    <div class="exp-layout">
+      <div class="exp-tabs">
+        <div class="exp-tab active" onclick="showExp('prop',this)">
+          <div class="exp-tab-co">Private Client</div>
+          <div class="exp-tab-yr">2019 – 2024</div>
+        </div>
+        <div class="exp-tab" onclick="showExp('beauty',this)">
+          <div class="exp-tab-co">Beauty Home</div>
+          <div class="exp-tab-yr">2018 – 2020</div>
+        </div>
+        <div class="exp-tab" onclick="showExp('muji',this)">
+          <div class="exp-tab-co">MUJI</div>
+          <div class="exp-tab-yr">2022 – 2023</div>
+        </div>
+        <div class="exp-tab" onclick="showExp('tutor',this)">
+          <div class="exp-tab-co">Math Tutor</div>
+          <div class="exp-tab-yr">2020 – 2022</div>
+        </div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-panel active" id="exp-prop">
+          <div class="exp-role">Property Asset Manager<br>& Investment Strategist</div>
+          <div class="exp-co-line">Private Client Engagement · Newmarket, ON · Aug 2019 – Jul 2024</div>
+          <p class="exp-desc">Served as dedicated asset manager and investment strategist for a private high-net-worth client. Oversaw the full operational and financial lifecycle of a $2M+ luxury residential property — functioning as a single-point-of-contact advisor enabling fully passive ownership while delivering measurable returns.</p>
+          <ul class="exp-bullets">
+            <li>Interpreted macroeconomic and GTA real estate conditions to advise on optimal sale timing, achieving a <span class="exp-highlight">90% profit on asset disposition</span></li>
+            <li>Identified operational inefficiencies and executed capital upgrades, <span class="exp-highlight">increasing short-term rental revenue by 60%</span> within the first year</li>
+            <li>Applied regression modeling in Excel and SQL to analyze booking trends, producing demand forecasts that <span class="exp-highlight">directly informed revenue strategy</span></li>
+            <li>Built automated NOI tracking dashboards delivering <span class="exp-highlight">100% reporting transparency</span> in real time</li>
+            <li>Managed $50K+ annual operating budget, <span class="exp-highlight">reducing overhead by 12% annually</span></li>
+            <li>Negotiated SLAs with vendors, <span class="exp-highlight">reducing annual operating expenses by 50%+</span></li>
+          </ul>
+        </div>
+        <div class="exp-panel" id="exp-beauty">
+          <div class="exp-role">Underwriter &<br>Financial Operations Assistant</div>
+          <div class="exp-co-line">Beauty Home, Furniture & Lighting · Scarborough, ON · May 2018 – Apr 2020</div>
+          <p class="exp-desc">Supported full financial operations of a mid-size retail business — managing AP/AR, ledger reconciliation, month-end close, and providing underwriting advisory on high-value purchasing decisions.</p>
+          <ul class="exp-bullets">
+            <li>Applied underwriting principles to high-ticket decisions, <span class="exp-highlight">reducing excess stock costs by 12% quarterly</span></li>
+            <li>Executed full-cycle AP/AR reconciliation and month-end close, <span class="exp-highlight">cutting reporting time by 19%</span></li>
+            <li>Processed payroll and financial reporting maintaining <span class="exp-highlight">full compliance</span> with internal controls</li>
+          </ul>
+        </div>
+        <div class="exp-panel" id="exp-muji">
+          <div class="exp-role">Sales & Inventory<br>Operations Associate</div>
+          <div class="exp-co-line">Ryohin Keikaku Co. Ltd. (MUJI) · Markham, ON · Aug 2022 – Jun 2023</div>
+          <p class="exp-desc">Managed front-line retail operations for one of Japan's most recognized lifestyle brands across a 7,000+ SKU product catalogue in a high-volume flagship environment.</p>
+          <ul class="exp-bullets">
+            <li>Processed <span class="exp-highlight">150+ daily transactions with 100% accuracy</span> across cash wrap and terminal balancing</li>
+            <li>Independently handled up to <span class="exp-highlight">500 incoming units per shift</span> in compliance with MUJI's standards</li>
+            <li>Built a base of repeat customers who purchased <span class="exp-highlight">exclusively on personal recommendations</span></li>
+          </ul>
+        </div>
+        <div class="exp-panel" id="exp-tutor">
+          <div class="exp-role">Mathematics Tutor</div>
+          <div class="exp-co-line">Advance Mathematics Service · Toronto, ON · Jul 2020 – May 2022</div>
+          <p class="exp-desc">Delivered private mathematics tutoring on contract, designing customized diagnostic assessments and structured learning programs tailored to individual student needs.</p>
+          <ul class="exp-bullets">
+            <li>Raised student performance to an <span class="exp-highlight">average test score of 94%</span></li>
+            <li>Migrated full delivery to Zoom, maintaining <span class="exp-highlight">100% student retention</span> through the pandemic</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section reveal" id="contact">
+  <div class="section-label">
+    <span class="s-num">04</span>
+    <span class="s-title">Contact</span>
+  </div>
+  <div class="section-body" style="padding:0;">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div>
+          <h2 class="contact-heading">Begin the<br><em>Conversation</em></h2>
+          <p class="contact-body">Available for financial consulting engagements, asset advisory, and strategic projects across the GTA. Reach out to discuss how I can help.</p>
+        </div>
+        <div class="contact-rows">
+          <a href="tel:4168210322" class="c-row">
+            <span class="c-key">Phone / Text</span>
+            <span class="c-val">(416) 821-0322</span>
+            <span class="c-arrow">→</span>
+          </a>
+          <a href="mailto:gavinzhang0@gmail.com" class="c-row">
+            <span class="c-key">Email</span>
+            <span class="c-val">gavinzhang0@gmail.com</span>
+            <span class="c-arrow">→</span>
+          </a>
+          <a href="https://linkedin.com/in/gavinzhang01" target="_blank" class="c-row">
+            <span class="c-key">LinkedIn</span>
+            <span class="c-val">gavinzhang01</span>
+            <span class="c-arrow">→</span>
+          </a>
+          <div class="c-row" style="cursor:default">
+            <span class="c-key">Location</span>
+            <span class="c-val">Toronto · Markham · GTA</span>
+            <span class="c-arrow" style="opacity:0">→</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <p class="statement">The most consequential financial decisions deserve more than guesswork. <em>Let's talk.</em></p>
+        <div class="avail-block">
+          <div class="avail-title">Availability</div>
+          <div class="avail-row"><span class="avail-k">Response time</span><span class="avail-v">Within 24 hours</span></div>
+          <div class="avail-row"><span class="avail-k">Format</span><span class="avail-v">In-person or video call</span></div>
+          <div class="avail-row"><span class="avail-k">Service area</span><span class="avail-v">GTA & Remote</span></div>
+          <div class="avail-row"><span class="avail-k">Languages</span><span class="avail-v">English · Cantonese</span></div>
+          <div class="avail-row"><span class="avail-k">Status</span><span class="avail-v open">Accepting new clients</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-l">Gavin Zhang — Financial Consultant</div>
+  <div class="footer-c">© 2026 · Toronto, Ontario</div>
+  <div class="footer-r">
+    <a href="tel:4168210322">Call</a>
+    <a href="mailto:gavinzhang0@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/gavinzhang01" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+function showExp(id, el) {
+  document.querySelectorAll('.exp-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('exp-' + id).classList.add('active');
+  el.classList.add('active');
+}
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
