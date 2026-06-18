@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gavin Zhang — Sun Life Financial Advisor · Toronto</title>
+<style>
+  /* ── TOKENS ─────────────────────────────────────── */
+  :root {
+    --sun-yellow:   #F4C015;
+    --sun-gold:     #E0A800;
+    --navy:         #003087;
+    --navy-deep:    #001C5C;
+    --navy-mid:     #0A3A7A;
+    --white:        #FFFFFF;
+    --off-white:    #F7F8FA;
+    --mist:         #EEF1F7;
+    --ink:          #0D1A2E;
+    --slate:        #4A5568;
+    --rule:         #D9E1ED;
+    --tag-bg:       #EBF0FA;
+
+    --f-display:    'Georgia', 'Times New Roman', serif;
+    --f-body:       'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    --space-xs:  0.5rem;
+    --space-sm:  1rem;
+    --space-md:  2rem;
+    --space-lg:  4rem;
+    --space-xl:  7rem;
+
+    --max-w: 1100px;
+    --radius: 3px;
+  }
+
+  /* ── RESET ──────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  /* ── UTILITY ────────────────────────────────────── */
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2.5rem; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+  .eyebrow-yellow { color: var(--sun-yellow); }
+  .rule-top { border-top: 1px solid var(--rule); padding-top: var(--space-lg); }
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--navy);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    margin: 0.2rem 0.2rem 0.2rem 0;
+  }
+  .tag-yellow {
+    background: var(--sun-yellow);
+    color: var(--navy-deep);
+  }
+
+  /* ── NAV ────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--navy-deep);
+    border-bottom: 3px solid var(--sun-yellow);
+  }
+  .nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .nav-logo .monogram {
+    width: 34px; height: 34px;
+    background: var(--sun-yellow);
+    color: var(--navy-deep);
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 2px;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo .name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo .role {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sun-yellow); }
+  .nav-cta {
+    background: var(--sun-yellow);
+    color: var(--navy-deep) !important;
+    font-weight: 700 !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { background: var(--sun-gold) !important; color: var(--navy-deep) !important; }
+
+  /* ── AVAILABILITY BAR ───────────────────────────── */
+  .avail-bar {
+    background: var(--sun-yellow);
+    padding: 0.55rem 2.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .avail-bar span {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy-deep);
+  }
+  .avail-dot {
+    display: inline-block; width: 7px; height: 7px;
+    background: #1a8a3a; border-radius: 50%; margin-right: 0.4rem;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; } 50% { opacity:0.4; }
+  }
+
+  /* ── HERO ───────────────────────────────────────── */
+  .hero {
+    background: var(--navy-deep);
+    padding: var(--space-xl) 0 var(--space-lg);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 45%; height: 100%;
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-deep) 100%);
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--sun-yellow) 0%, var(--sun-gold) 100%);
+  }
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: var(--max-w); margin: 0 auto; padding: 0 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--sun-yellow);
+    margin-bottom: 1.2rem; display: block;
+  }
+  .hero h1 {
+    font-family: var(--f-display);
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--sun-yellow); }
+  .hero-sub {
+    font-size: 1rem; line-height: 1.7;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 2rem; max-width: 460px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--sun-yellow);
+    color: var(--navy-deep);
+    font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.85rem 1.8rem; border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--sun-gold); transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.85rem 1.8rem; border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--sun-yellow); color: var(--sun-yellow); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-top: 3px solid var(--sun-yellow);
+    padding: 1.5rem 1.2rem;
+    border-radius: 2px;
+  }
+  .stat-number {
+    font-family: var(--f-display);
+    font-size: 2rem; font-weight: 400;
+    color: var(--sun-yellow); line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .stat-label {
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+  }
+
+  /* ── SECTION BASE ───────────────────────────────── */
+  .section { padding: var(--space-xl) 0; }
+  .section-alt { background: var(--off-white); }
+  .section-navy {
+    background: var(--navy-deep);
+    color: var(--white);
+  }
+
+  .section-header { margin-bottom: 3.5rem; }
+  .section-header h2 {
+    font-family: var(--f-display);
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    font-weight: 400; line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-header p {
+    font-size: 1rem; color: var(--slate);
+    max-width: 580px; line-height: 1.7;
+  }
+  .section-navy .section-header p { color: rgba(255,255,255,0.65); }
+  .section-navy h2 { color: var(--white); }
+
+  /* ── SUNLIFE BADGE ──────────────────────────────── */
+  .sunlife-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--sun-yellow);
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+  .sunlife-badge .dot { width: 8px; height: 8px; background: var(--navy-deep); border-radius: 50%; }
+  .sunlife-badge span {
+    font-size: 0.72rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--navy-deep);
+  }
+
+  /* ── PRODUCTS ───────────────────────────────────── */
+  .product-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .product-category {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--navy);
+    padding: 2rem;
+    border-radius: 2px;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .product-category:hover {
+    box-shadow: 0 8px 32px rgba(0,48,135,0.10);
+    transform: translateY(-2px);
+  }
+  .section-alt .product-category { background: var(--white); }
+  .product-category.accent { border-top-color: var(--sun-yellow); }
+  .cat-icon {
+    width: 42px; height: 42px;
+    background: var(--mist); border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+  .cat-icon svg { width: 22px; height: 22px; }
+  .product-category h3 {
+    font-size: 1rem; font-weight: 700;
+    color: var(--navy-deep); margin-bottom: 0.5rem;
+  }
+  .product-category p {
+    font-size: 0.85rem; color: var(--slate);
+    line-height: 1.6; margin-bottom: 1.2rem;
+  }
+  .product-list { list-style: none; }
+  .product-list li {
+    font-size: 0.82rem; color: var(--slate);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .product-list li:last-child { border-bottom: none; }
+  .product-list li::before {
+    content: '';
+    display: inline-block; width: 4px; height: 4px;
+    background: var(--sun-yellow); border-radius: 50%; flex-shrink: 0;
+  }
+  .product-list a { color: var(--navy); font-weight: 500; }
+  .product-list a:hover { color: var(--sun-gold); text-decoration: underline; }
+
+  /* ── WHY GAVIN ──────────────────────────────────── */
+  .why-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+  }
+  .why-item { padding: 0; }
+  .why-number {
+    font-family: var(--f-display);
+    font-size: 3rem; font-weight: 400;
+    color: var(--sun-yellow); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .why-item h3 {
+    font-size: 0.9rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.5rem;
+  }
+  .why-item p {
+    font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.6;
+  }
+
+  /* ── ACHIEVEMENTS ───────────────────────────────── */
+  .achievement-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+  }
+  .achievement-list { list-style: none; }
+  .achievement-list li {
+    display: flex; gap: 1rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .achievement-list li:first-child { border-top: 1px solid var(--rule); }
+  .ach-bullet {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--sun-yellow); flex-shrink: 0; margin-top: 0.45rem;
+  }
+  .ach-text { font-size: 0.9rem; color: var(--ink); line-height: 1.6; }
+  .ach-text strong { color: var(--navy-deep); font-weight: 700; }
+
+  .credentials-block {
+    background: var(--navy-deep); padding: 2.5rem;
+    border-radius: 2px; color: var(--white);
+  }
+  .credentials-block h3 {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--sun-yellow); margin-bottom: 1.5rem;
+  }
+  .cred-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.86rem;
+  }
+  .cred-item:last-child { border-bottom: none; }
+  .cred-name { color: rgba(255,255,255,0.85); font-weight: 500; }
+  .cred-status {
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.25rem 0.65rem; border-radius: 2px;
+  }
+  .status-active { background: rgba(244,192,21,0.18); color: var(--sun-yellow); }
+  .status-progress { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+
+  /* ── EDUCATION ──────────────────────────────────── */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .edu-block h3 {
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--navy-deep); margin-bottom: 0.3rem;
+  }
+  .edu-block .institution {
+    font-size: 0.82rem; color: var(--slate); margin-bottom: 1rem;
+  }
+  .course-tags { margin-top: 1rem; }
+
+  /* ── PROCESS ────────────────────────────────────── */
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative;
+  }
+  .process-steps::before {
+    content: ''; position: absolute;
+    top: 28px; left: 10%; right: 10%; height: 2px;
+    background: var(--rule); z-index: 0;
+  }
+  .process-step { position: relative; z-index: 1; padding: 0 1.5rem; text-align: center; }
+  .step-circle {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--white); border: 2px solid var(--sun-yellow);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.2rem;
+    font-size: 0.78rem; font-weight: 800;
+    color: var(--navy-deep); letter-spacing: 0.04em;
+  }
+  .process-step h3 {
+    font-size: 0.88rem; font-weight: 700;
+    color: var(--navy-deep); margin-bottom: 0.4rem;
+  }
+  .process-step p { font-size: 0.8rem; color: var(--slate); line-height: 1.5; }
+
+  /* ── EXPERIENCE ─────────────────────────────────── */
+  .exp-list { display: flex; flex-direction: column; gap: 2.5rem; }
+  .exp-item {
+    display: grid; grid-template-columns: 180px 1fr; gap: 2.5rem;
+    padding-bottom: 2.5rem; border-bottom: 1px solid var(--rule);
+  }
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .exp-meta { padding-top: 0.15rem; }
+  .exp-date { font-size: 0.75rem; font-weight: 600; color: var(--navy); letter-spacing: 0.04em; margin-bottom: 0.3rem; }
+  .exp-org { font-size: 0.78rem; color: var(--slate); }
+  .exp-content h3 { font-size: 1rem; font-weight: 700; color: var(--navy-deep); margin-bottom: 0.4rem; }
+  .exp-content p { font-size: 0.88rem; color: var(--slate); line-height: 1.65; margin-bottom: 0.8rem; }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 0.83rem; color: var(--slate); line-height: 1.6;
+    padding: 0.25rem 0 0.25rem 1.1rem; position: relative;
+  }
+  .exp-bullets li::before {
+    content: '—'; position: absolute; left: 0; color: var(--sun-yellow);
+    font-weight: 700;
+  }
+
+  /* ── CONTACT ────────────────────────────────────── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+  .contact-method {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.2rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .contact-method:last-of-type { border-bottom: none; }
+  .contact-icon {
+    width: 36px; height: 36px; background: rgba(244,192,21,0.15);
+    border-radius: 2px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-icon svg { width: 16px; height: 16px; }
+  .contact-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 0.2rem; }
+  .contact-value { font-size: 0.92rem; color: var(--white); font-weight: 500; }
+  .contact-value a { color: var(--sun-yellow); }
+  .contact-value a:hover { text-decoration: underline; }
+
+  .contact-form-block {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+    padding: 2.5rem; border-radius: 2px;
+  }
+  .contact-form-block h3 {
+    font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem;
+  }
+  .contact-form-block p { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-bottom: 1.8rem; }
+  .form-row { margin-bottom: 1rem; }
+  .form-row label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 0.4rem; }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%; background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 2px;
+    padding: 0.75rem 1rem; color: var(--white); font-family: var(--f-body); font-size: 0.88rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .form-row input::placeholder, .form-row textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--sun-yellow); }
+  .form-row select option { background: var(--navy-deep); color: var(--white); }
+  .form-row textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    width: 100%; background: var(--sun-yellow);
+    color: var(--navy-deep); font-size: 0.8rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.9rem; border: none; border-radius: 2px;
+    cursor: pointer; margin-top: 0.5rem; transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--sun-gold); }
+
+  /* ── FOOTER ─────────────────────────────────────── */
+  footer {
+    background: var(--ink); padding: 2.5rem 0;
+    border-top: 3px solid var(--sun-yellow);
+  }
+  .footer-inner {
+    max-width: var(--max-w); margin: 0 auto; padding: 0 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-inner p { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+  .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+  .footer-links a { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
+  .footer-links a:hover { color: var(--sun-yellow); }
+
+  /* ── DISCLAIMER ─────────────────────────────────── */
+  .disclaimer {
+    background: var(--mist);
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .disclaimer p {
+    font-size: 0.72rem; color: var(--slate); line-height: 1.6;
+    max-width: var(--max-w); margin: 0 auto; padding: 0 2.5rem;
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────────── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero::before { display: none; }
+    .product-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .achievement-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .container { padding: 0 1.25rem; }
+    .nav-inner { padding: 0 1.25rem; }
+    .avail-bar { padding: 0.55rem 1.25rem; gap: 1rem; }
+    .hero { padding: 4rem 0 3rem; }
+    .hero-inner { padding: 0 1.25rem; }
+    .section { padding: 4rem 0; }
+    .product-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="monogram">GZ</div>
+      <div>
+        <div class="name">Gavin Zhang</div>
+        <div class="role">Sun Life Financial Advisor · Toronto</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact" class="nav-cta">Enquire →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- AVAILABILITY BAR -->
+<div class="avail-bar">
+  <span><span class="avail-dot"></span>Accepting New Clients — GTA &amp; Remote</span>
+  <span>·</span>
+  <span>LLQP — In Progress</span>
+  <span>·</span>
+  <span>Response within 24 hours</span>
+  <span>·</span>
+  <span>English · 粵語</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow">Sun Life Financial Advisor · Toronto, ON</span>
+      <h1>Protecting what<br>matters <em>most</em> to you.</h1>
+      <p class="hero-sub">
+        Helping GTA families, professionals, and business owners build financial security through trusted Sun Life insurance, investments, and savings solutions — backed by five years of real-world asset management experience.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get a Free Consultation →</a>
+        <a href="#products" class="btn-ghost">Explore Products</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">$6M+</div>
+        <div class="stat-label">Private Assets Under Advisory</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">90%</div>
+        <div class="stat-label">Profit on Asset Disposition</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Years Client Engagement</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">BComm</div>
+        <div class="stat-label">Ted Rogers School of Management — TMU</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section section-alt" id="products">
+  <div class="container">
+    <div class="section-header">
+      <div class="sunlife-badge"><div class="dot"></div><span>Sun Life Products</span></div>
+      <span class="eyebrow">What I Can Help You With</span>
+      <h2>Insurance, investments,<br>and savings — under one roof.</h2>
+      <p>As a Sun Life Financial Advisor, I help clients access the full range of Sun Life's product suite — tailored to your life stage, goals, and budget.</p>
+    </div>
+    <div class="product-grid">
+
+      <!-- LIFE INSURANCE -->
+      <div class="product-category">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#003087" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Life Insurance</h3>
+        <p>Protect your family's financial future if the unexpected happens. Flexible options for every life stage.</p>
+        <ul class="product-list">
+          <li><a href="https://www.sunlife.ca/en/insurance/life/" target="_blank">Life Insurance Overview</a></li>
+          <li><a href="https://www.sunlife.ca/en/insurance/life/term-life-insurance/" target="_blank">Term Life Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/insurance/life/permanent-life-insurance/" target="_blank">Permanent Life Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/insurance/mortgage-protection/" target="_blank">Mortgage Protection Insurance</a></li>
+        </ul>
+      </div>
+
+      <!-- HEALTH INSURANCE -->
+      <div class="product-category accent">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#003087" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Health Insurance</h3>
+        <p>Comprehensive coverage for medical, dental, and critical illness events — so health costs don't derail your finances.</p>
+        <ul class="product-list">
+          <li><a href="https://www.sunlife.ca/en/health/personal-health-insurance/" target="_blank">Personal Health Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/health/personal-health-insurance/dental-insurance/" target="_blank">Dental Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/health/critical-illness-insurance/" target="_blank">Critical Illness Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/health/long-term-care-insurance/" target="_blank">Long-Term Care Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/health/disability-insurance/" target="_blank">Disability Insurance</a></li>
+        </ul>
+      </div>
+
+      <!-- OTHER INSURANCE -->
+      <div class="product-category">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#003087" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Specialty Insurance</h3>
+        <p>Tailored solutions for travel, business owners, and other specific needs.</p>
+        <ul class="product-list">
+          <li><a href="https://www.sunlife.ca/en/insurance/travel/" target="_blank">Travel Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/insurance/business/" target="_blank">Business Owner's Insurance</a></li>
+        </ul>
+      </div>
+
+      <!-- PLANS & ACCOUNTS -->
+      <div class="product-category">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#003087" stroke-width="1.8"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3>Plans &amp; Registered Accounts</h3>
+        <p>Tax-efficient savings vehicles to build wealth and fund your goals — from first home to retirement.</p>
+        <ul class="product-list">
+          <li><a href="https://www.sunlife.ca/en/investments/rrsp/" target="_blank">RRSP — Retirement Savings</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/tfsa/" target="_blank">TFSA — Tax-Free Savings</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/fhsa/" target="_blank">FHSA — First Home Savings</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/resp/" target="_blank">RESP — Education Savings</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/rrif/" target="_blank">RRIF — Retirement Income</a></li>
+        </ul>
+      </div>
+
+      <!-- INVESTMENT PRODUCTS -->
+      <div class="product-category accent">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#003087" stroke-width="1.8"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <h3>Investment Products</h3>
+        <p>Grow your wealth with professionally managed products — from guaranteed returns to market-linked growth with insurance protection.</p>
+        <ul class="product-list">
+          <li><a href="https://www.sunlife.ca/en/investments/gic/" target="_blank">GICs — Guaranteed Returns</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/mutual-funds/" target="_blank">Mutual Funds</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/segregated-funds/" target="_blank">Segregated Funds</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/annuities/" target="_blank">Annuity Products</a></li>
+          <li><a href="https://www.sunlife.ca/en/group/investments/" target="_blank">Group Investments</a></li>
+        </ul>
+      </div>
+
+      <!-- NOT SURE -->
+      <div class="product-category" style="background:var(--navy-deep); border-color:var(--navy-deep); border-top-color:var(--sun-yellow);">
+        <div class="cat-icon" style="background:rgba(244,192,21,0.15);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F4C015" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3 style="color:#fff;">Not Sure Where to Start?</h3>
+        <p style="color:rgba(255,255,255,0.6);">Book a free 30-minute call. I'll listen to your situation and walk you through the products that actually make sense for you — no pressure, no jargon.</p>
+        <a href="#contact" class="btn-primary" style="margin-top:0.5rem; font-size:0.75rem; display:inline-block;">Book Free Call →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY GAVIN -->
+<section class="section section-navy" id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow eyebrow-yellow">Why Work With Me</span>
+      <h2>A different kind of advisor.</h2>
+      <p>Most advisors sell products. I build financial plans grounded in quantitative analysis and five years of hands-on asset management experience.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-number">$6M+</div>
+        <h3>Real Assets Managed</h3>
+        <p>Five years overseeing a private portfolio of residential real estate, commercial holdings, and equities — not just textbook theory.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-number">TMU</div>
+        <h3>Ted Rogers School</h3>
+        <p>BComm in Economics & Management Science. Rigorous quantitative training applied to every client recommendation.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-number">GTA</div>
+        <h3>Local Market Expertise</h3>
+        <p>Deep knowledge of the Greater Toronto Area — real estate, income, tax, and cost-of-living dynamics that affect your financial plan.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-number">粵語</div>
+        <h3>Bilingual Service</h3>
+        <p>Fluent in English and Cantonese. Serving the GTA's diverse communities with clear, culturally comfortable financial conversations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="section" id="achievements">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Background &amp; Credentials</span>
+      <h2>Experience you can trust.</h2>
+    </div>
+    <div class="achievement-grid">
+      <div>
+        <ul class="achievement-list">
+          <li>
+            <div class="ach-bullet"></div>
+            <div class="ach-text"><strong>Private Retainer — $6M+ in Assets (2022)</strong> — Managed a private portfolio including residential real estate, commercial holdings, and equities for a high-net-worth client.</div>
+          </li>
+          <li>
+            <div class="ach-bullet"></div>
+            <div class="ach-text"><strong>Personal Portfolio ~$100K (2023)</strong> — Self-directed portfolio spanning equities, GICs, and alternative assets including art. A real investor, not just an advisor.</div>
+          </li>
+          <li>
+            <div class="ach-bullet"></div>
+            <div class="ach-text"><strong>Exceptional Young Artist Award</strong> — Bass trombone. Multiple Platinum &amp; Gold placements at music festivals. Best Brass Section award. RCM Level 8 Piano.</div>
+          </li>
+          <li>
+            <div class="ach-bullet"></div>
+            <div class="ach-text"><strong>Started Arithmetic at Age 2</strong> — A lifelong affinity for numbers that became a career in financial analysis and asset management.</div>
+          </li>
+          <li>
+            <div class="ach-bullet"></div>
+            <div class="ach-text"><strong>Music &amp; Culture Minor</strong> — Alongside Economics &amp; Management Science at TMU. Discipline, performance under pressure, and attention to craft — applied to every client engagement.</div>
+          </li>
+        </ul>
+      </div>
+      <div class="credentials-block">
+        <h3>Certifications &amp; Credentials</h3>
+        <div class="cred-item">
+          <span class="cred-name">BComm — Economics &amp; Management Science</span>
+          <span class="cred-status status-active">Completed</span>
+        </div>
+        <div class="cred-item">
+          <span class="cred-name">Ted Rogers School of Management — TMU</span>
+          <span class="cred-status status-active">Graduated 2025</span>
+        </div>
+        <div class="cred-item">
+          <span class="cred-name">LLQP — Life Licence Qualification Program</span>
+          <span class="cred-status status-progress">In Progress</span>
+        </div>
+        <div class="cred-item">
+          <span class="cred-name">CSC — Canadian Securities Course</span>
+          <span class="cred-status status-progress">In Progress</span>
+        </div>
+        <div class="cred-item">
+          <span class="cred-name">Bloomberg Analytics</span>
+          <span class="cred-status status-active">Proficient</span>
+        </div>
+        <div class="cred-item">
+          <span class="cred-name">Advanced Excel — VBA &amp; Financial Modeling</span>
+          <span class="cred-status status-active">Advanced</span>
+        </div>
+        <div class="cred-item">
+          <span class="cred-name">Languages — English &amp; Cantonese (粵語)</span>
+          <span class="cred-status status-active">Fluent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section section-alt" id="process">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">How It Works</span>
+      <h2>From first call to financial plan — four clear steps.</h2>
+      <p>No pressure. No jargon. Just a straightforward conversation about where you are, where you want to go, and how Sun Life's solutions can get you there.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-circle">01</div>
+        <h3>Free Consultation</h3>
+        <p>30-minute call or meeting. Tell me about your situation, goals, and timeline. No obligation.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">02</div>
+        <h3>Needs Analysis</h3>
+        <p>I assess your financial picture — income, family, debts, goals — to identify coverage and savings gaps.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">03</div>
+        <h3>Product Recommendation</h3>
+        <p>A tailored plan from Sun Life's product suite. Every recommendation explained clearly before any decision.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">04</div>
+        <h3>Ongoing Support</h3>
+        <p>Annual reviews, life event check-ins, and always available when you have questions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Professional Experience</span>
+      <h2>Five years managing real money for real clients.</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Aug 2019 – Jul 2024</div>
+          <div class="exp-org">Private Client · Newmarket, ON</div>
+        </div>
+        <div class="exp-content">
+          <h3>Asset Manager &amp; Investment Strategist</h3>
+          <p>Served as a single-point-of-contact advisor for a private high-net-worth client, overseeing a $6M+ portfolio of residential real estate, commercial holdings, and equities over five years.</p>
+          <ul class="exp-bullets">
+            <li>Advised on optimal asset sale timing, achieving 90% profit on asset disposition</li>
+            <li>Executed targeted capital upgrades, increasing short-term rental revenue by 60% within year one</li>
+            <li>Built automated NOI tracking dashboards delivering full reporting transparency</li>
+            <li>Managed $50K+ annual operating budget, reducing overhead by 12% annually</li>
+            <li>Negotiated vendor SLAs, cutting operating expenses by 50%+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">May 2018 – Apr 2020</div>
+          <div class="exp-org">Beauty Home · Scarborough, ON</div>
+        </div>
+        <div class="exp-content">
+          <h3>Underwriter &amp; Financial Operations</h3>
+          <p>Managed full AP/AR cycle, general ledger reconciliation, and month-end close for a mid-size retail business. Applied underwriting principles to assess financial risk on high-ticket inventory purchases.</p>
+          <ul class="exp-bullets">
+            <li>Reduced excess stock costs by 12% quarterly through underwriting-based purchasing decisions</li>
+            <li>Cut administrative reporting time by 19% through process improvements</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-navy" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <span class="eyebrow eyebrow-yellow">Get in Touch</span>
+        <h2 style="color:#fff; margin-bottom:1rem;">Let's talk about<br>your financial future.</h2>
+        <p style="color:rgba(255,255,255,0.6); margin-bottom:2.5rem; font-size:0.95rem; line-height:1.7;">Whether you're looking for life insurance, planning for retirement, or just want to understand your options — reach out. The first conversation is always free.</p>
+
+        <div class="contact-method">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F4C015" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.64a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Phone / Text</div>
+            <div class="contact-value"><a href="tel:4168210322">(416) 821-0322</a></div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F4C015" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:gavinzhang0@gmail.com">gavinzhang0@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F4C015" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value"><a href="https://linkedin.com/in/gavinzhang01" target="_blank">linkedin.com/in/gavinzhang01</a></div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F4C015" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value" style="color:rgba(255,255,255,0.75);">Toronto · Markham · GTA, Ontario<br><span style="font-size:0.78rem; color:rgba(255,255,255,0.45);">In-person or video call available</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-block">
+        <h3>Book a Free Consultation</h3>
+        <p>Briefly describe what you're looking for and I'll follow up within 24 hours.</p>
+        <div class="form-row">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your name">
+        </div>
+        <div class="form-row">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-row">
+          <label>I'm Interested In</label>
+          <select>
+            <option value="" disabled selected>Select a product area</option>
+            <option>Life Insurance</option>
+            <option>Health / Dental / Disability</option>
+            <option>Critical Illness Insurance</option>
+            <option>Travel Insurance</option>
+            <option>RRSP / TFSA / RESP / FHSA</option>
+            <option>GICs / Mutual Funds</option>
+            <option>Segregated Funds / Annuities</option>
+            <option>Business Owner's Insurance</option>
+            <option>Not sure — general consultation</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Message (Optional)</label>
+          <textarea placeholder="Tell me a bit about your situation or goals..."></textarea>
+        </div>
+        <button class="form-submit" onclick="alert('Thank you! Gavin will be in touch within 24 hours.')">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <p><strong>Important notice:</strong> Gavin Zhang is currently pursuing the Life Licence Qualification Program (LLQP) and is not yet a licensed insurance or investment advisor. Insurance and investment products described on this page are offered through Sun Life Assurance Company of Canada. This website is for informational purposes only and does not constitute financial, investment, or insurance advice. Please consult a licensed professional before making any financial decisions.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <p>© 2026 Gavin Zhang · Sun Life Financial Advisor · Toronto, Ontario</p>
+    <ul class="footer-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://www.sunlife.ca/en/" target="_blank">sunlife.ca</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
