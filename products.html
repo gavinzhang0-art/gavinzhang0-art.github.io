@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Products — Gavin Zhang · Sun Life Financial Advisor</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
+    .product-card{border:1px solid var(--blue-border);border-radius:var(--radius);padding:24px;background:var(--white);transition:box-shadow .2s,border-color .2s;}
+    .product-card:hover{box-shadow:0 4px 20px rgba(30,111,217,.1);border-color:var(--blue);}
+    .product-card h3{font-size:16px;font-weight:700;color:var(--blue);margin-bottom:12px;}
+    .product-card ul{display:flex;flex-direction:column;gap:6px;}
+    .product-card li a{font-size:14px;color:var(--blue);display:flex;align-items:center;gap:6px;}
+    .product-card li a:hover{text-decoration:underline;}
+    .product-card li a::before{content:"→";font-size:12px;opacity:.55;}
+    .cta-card{background:var(--yellow-bg);border-color:#F5C97A;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:14px;}
+    .cta-card h3{color:var(--text);}
+    .cta-card p{font-size:15px;color:var(--muted);}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand"><span class="nav-logo">GZ</span><span>Gavin Zhang · Sun Life</span></a>
+  <div class="nav-links">
+    <a href="products.html" class="active">Products</a>
+    <a href="about.html">About</a>
+    <a href="process.html">Process</a>
+    <a href="experience.html">Experience</a>
+    <a href="index.html#contact" class="nav-cta">Enquire →</a>
+  </div>
+</nav>
+<div class="statusbar">
+  <span><span class="dot"></span> Accepting New Clients — GTA &amp; Remote</span>
+  <span>LLQP — In Progress</span><span>Response within 24 hours</span><span>English · 粵語</span>
+</div>
+
+<div class="page-hero">
+  <p class="section-eyebrow">Sun Life Products</p>
+  <h1>Insurance, investments, and savings — <em>under one roof.</em></h1>
+  <p>Access the full range of Sun Life's product suite — tailored to your life stage, goals, and budget.</p>
+</div>
+
+<section style="background:var(--white);">
+  <div class="container">
+    <div class="product-grid">
+      <div class="product-card">
+        <h3>Life Insurance</h3>
+        <ul>
+          <li><a href="https://www.sunlife.ca/en/insurance/life/" target="_blank">Life Insurance Overview</a></li>
+          <li><a href="https://www.sunlife.ca/en/insurance/life/term-life-insurance/" target="_blank">Term Life Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/insurance/life/permanent-life-insurance/" target="_blank">Permanent Life Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/insurance/mortgage-protection/" target="_blank">Mortgage Protection Insurance</a></li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <h3>Health Insurance</h3>
+        <ul>
+          <li><a href="https://www.sunlife.ca/en/health/personal-health-insurance/" target="_blank">Personal Health Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/health/personal-health-insurance/dental-insurance/" target="_blank">Dental Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/health/critical-illness-insurance/" target="_blank">Critical Illness Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/health/long-term-care-insurance/" target="_blank">Long-Term Care Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/health/disability-insurance/" target="_blank">Disability Insurance</a></li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <h3>Specialty Insurance</h3>
+        <ul>
+          <li><a href="https://www.sunlife.ca/en/insurance/travel/" target="_blank">Travel Insurance</a></li>
+          <li><a href="https://www.sunlife.ca/en/insurance/business/" target="_blank">Business Owner's Insurance</a></li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <h3>Plans &amp; Registered Accounts</h3>
+        <ul>
+          <li><a href="https://www.sunlife.ca/en/investments/rrsp/" target="_blank">RRSP — Retirement Savings</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/tfsa/" target="_blank">TFSA — Tax-Free Savings</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/fhsa/" target="_blank">FHSA — First Home Savings</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/resp/" target="_blank">RESP — Education Savings</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/rrif/" target="_blank">RRIF — Retirement Income</a></li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <h3>Investment Products</h3>
+        <ul>
+          <li><a href="https://www.sunlife.ca/en/investments/gic/" target="_blank">GICs — Guaranteed Returns</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/mutual-funds/" target="_blank">Mutual Funds</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/segregated-funds/" target="_blank">Segregated Funds</a></li>
+          <li><a href="https://www.sunlife.ca/en/investments/annuities/" target="_blank">Annuity Products</a></li>
+          <li><a href="https://www.sunlife.ca/en/group/investments/" target="_blank">Group Investments</a></li>
+        </ul>
+      </div>
+      <div class="product-card cta-card">
+        <h3>Not Sure Where to Start?</h3>
+        <p>Book a free 30-minute call. I'll listen to your situation and walk you through the products that actually make sense for you — no pressure, no jargon.</p>
+        <a href="index.html#contact" class="btn-yellow">Book Free Call →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 Gavin Zhang · Sun Life Financial Advisor · Toronto, Ontario</span>
+    <div class="footer-links">
+      <a href="products.html">Products</a><a href="about.html">About</a>
+      <a href="index.html#contact">Contact</a><a href="https://www.sunlife.ca/en/" target="_blank">sunlife.ca</a>
+    </div>
+  </div>
+  <p class="disclaimer"><strong>Important notice:</strong> Gavin Zhang is currently pursuing the Life Licence Qualification Program (LLQP) and is not yet a licensed insurance or investment advisor. Insurance and investment products described on this page are offered through Sun Life Assurance Company of Canada. This website is for informational purposes only and does not constitute financial, investment, or insurance advice. Please consult a licensed professional before making any financial decisions.</p>
+</footer>
+</body>
+</html>
